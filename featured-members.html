@@ -7,25 +7,89 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header class="site-header">
-      <nav class="site-nav container" aria-label="Main Navigation">
-        <a class="site-brand" href="index.html">NVC Wildcats</a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="experience.html">Experience</a></li>
-          <li><a href="announcements.html">Announcements</a></li>
-          <li><a href="livestream.html">Livestream</a></li>
-          <li><a href="featured-members.html" class="active" aria-current="page">Featured Members</a></li>
-          <li><a href="guest-speakers.html">Guest Speakers</a></li>
-          <li><a href="arcade.html">Arcade</a></li>
-          <li><a href="animation.html">Animation</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </nav>
-    </header>
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Main Navigation">
+      <a class="site-brand" href="index.html">NVC Wildcats</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="livestream.html">Livestream</a></li>
+        <li><a href="featured-members.html" class="active" aria-current="page">Featured Members</a></li>
+        <li><a href="guest-speakers.html">Guest Speakers</a></li>
+        <li><a href="arcade.html">Arcade</a></li>
+        <li><a href="animation.html">Animation</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">Light Mode</button>
+    </nav>
+  </header>
   <main class="container">
-    <h1>Featured Members</h1>
+    <section class="member-hero">
+      <p class="member-kicker">Club Talent Showcase</p>
+      <h1>Featured Members</h1>
+      <p class="member-intro">Meet students building software, shipping projects, and representing Wildcats AI and Cloud Computing Club in public.</p>
+    </section>
+
+    <section class="member-grid" aria-label="Featured members list">
+      <article class="member-card">
+        <p class="member-tag">Spotlight</p>
+        <h2>Randall Chapman-Bey</h2>
+        <p class="member-role">SaaS Founder / Developer / Computer Science Student</p>
+        <p>Creator of Put Me On Social Music App and active contributor to club web projects and student tech initiatives.</p>
+        <img class="member-photo" src="assets/members/randall-20240903.jpg" alt="Portrait of Randall Chapman-Bey" />
+        <div class="member-links">
+          <a class="btn" href="https://github.com/profitboysub0-max" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <p class="member-tag">Cloud Builder</p>
+        <h2>Wildcat Member</h2>
+        <p class="member-role">Cloud Engineering Track</p>
+        <p>Deploys full-stack projects to cloud platforms, documents architecture decisions, and helps teammates ship faster.</p>
+        <div class="member-links">
+          <a class="btn" href="feedback.html">Nominate a Member</a>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <p class="member-tag">AI Creator</p>
+        <h2>Wildcat Member</h2>
+        <p class="member-role">AI and Data Track</p>
+        <p>Builds practical AI prototypes for campus use and shares experiments, prompts, and demos with the community.</p>
+        <div class="member-links">
+          <a class="btn" href="experience.html">View Club Experience</a>
+        </div>
+      </article>
+    </section>
   </main>
+  <script>
+    (function () {
+      var toggle = document.getElementById("theme-toggle");
+      var root = document.documentElement;
+      var key = "wildcats-theme";
+      var saved = localStorage.getItem(key);
+
+      if (saved === "light") {
+        root.setAttribute("data-theme", "light");
+        toggle.textContent = "Dark Mode";
+      }
+
+      toggle.addEventListener("click", function () {
+        var light = root.getAttribute("data-theme") === "light";
+        if (light) {
+          root.removeAttribute("data-theme");
+          localStorage.setItem(key, "dark");
+          toggle.textContent = "Light Mode";
+        } else {
+          root.setAttribute("data-theme", "light");
+          localStorage.setItem(key, "light");
+          toggle.textContent = "Dark Mode";
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
