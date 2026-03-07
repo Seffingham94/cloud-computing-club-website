@@ -3,29 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NVC Wildcats | Animation</title>
+  <title>NVC Wildcats | Animation & Cartoons</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header class="site-header">
-      <nav class="site-nav container" aria-label="Main Navigation">
-        <a class="site-brand" href="index.html">NVC Wildcats</a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="experience.html">Experience</a></li>
-          <li><a href="announcements.html">Announcements</a></li>
-          <li><a href="livestream.html">Livestream</a></li>
-          <li><a href="featured-members.html">Featured Members</a></li>
-          <li><a href="guest-speakers.html">Guest Speakers</a></li>
-          <li><a href="arcade.html">Arcade</a></li>
-          <li><a href="animation.html" class="active" aria-current="page">Animation</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </nav>
-    </header>
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Main Navigation">
+      <a class="site-brand" href="index.html">NVC Wildcats</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="livestream.html">Livestream</a></li>
+        <li><a href="featured-members.html">Featured Members</a></li>
+        <li><a href="guest-speakers.html">Guest Speakers</a></li>
+        <li><a href="arcade.html">Arcade</a></li>
+        <li><a href="animation.html" class="active" aria-current="page">Animation</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
   <main class="container">
-    <h1>Animation</h1>
+    <section class="animation-hero">
+      <p class="animation-kicker">Student Digital Media</p>
+      <h1>Animation & Cartoons</h1>
+      <p>Explore AI-generated animation projects, student digital media experiments, short videos, and motion design work from the club.</p>
+    </section>
+
+    <section class="animation-grid" aria-label="Animation projects">
+      <article class="animation-card">
+        <h2>Featured AI Animation</h2>
+        <p>Short film generated and edited by students using AI-assisted tools.</p>
+        <video controls preload="metadata" class="media-frame">
+          <source src="assets/media/animation.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </article>
+
+      <article class="animation-card">
+        <h2>GIF Showcase</h2>
+        <p>Looping motion clips and character tests from student creators.</p>
+        <img class="media-frame" src="assets/media/ai-loop.gif" alt="AI-generated animation loop by club members" />
+      </article>
+
+      <article class="animation-card">
+        <h2>Project Highlights</h2>
+        <ul class="animation-list">
+          <li>AI storyboard to final animation workflow</li>
+          <li>Student voiceover and post-production editing</li>
+          <li>Motion graphics for campus events and tech talks</li>
+          <li>Cartoon short clips rendered for social channels</li>
+        </ul>
+        <a class="btn" href="feedback.html">Submit Your Animation</a>
+      </article>
+    </section>
   </main>
 </body>
 </html>
