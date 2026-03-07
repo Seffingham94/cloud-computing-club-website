@@ -182,9 +182,144 @@ footer {
     color: #94f0ff;
 }
 
+/* --- Willie Chat Widget --- */
+#willie-chat-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    height: 500px;
+    background: rgba(19, 26, 43, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 0 25px #7c3aed;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeInUp 0.4s ease;
+    z-index: 9999;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #131a2b;
+    border-bottom: 2px solid #7c3aed;
+    font-weight: bold;
+    color: #00f0ff;
+    font-size: 1.1rem;
+}
+
+.widget-header img.header-willie {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 18px #7c3aed;
+    margin-right: 10px;
+    animation: pulse 2s infinite;
+}
+
+#close-widget {
+    margin-left: auto;
+    margin-top: 0;
+    background: #7c3aed;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.widget-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    color: #fff;
+}
+
+.widget-input {
+    display: flex;
+    padding: 10px;
+    background: #0b0f1a;
+}
+
+.widget-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #7c3aed;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.widget-input button {
+    margin-left: 10px;
+    margin-top: 0;
+    background: #7c3aed;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#willie-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0 0 20px #7c3aed;
+    cursor: pointer;
+    z-index: 9999;
+    animation: pulse 2s infinite;
+}
+
+#willie-launcher img {
+    width: 55px;
+    height: 55px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px #7c3aed; }
+    50% { box-shadow: 0 0 25px #7c3aed; }
+    100% { box-shadow: 0 0 10px #7c3aed; }
+}
+
 @media(max-width:768px) {
     .cards { flex-direction: column; }
     nav { flex-direction: column; gap: 15px; }
+    #willie-chat-widget {
+        width: calc(100vw - 24px);
+        right: 12px;
+        bottom: 90px;
+        height: 70vh;
+    }
+    #willie-launcher {
+        right: 12px;
+        bottom: 12px;
+    }
 }
 
 </style>
@@ -289,6 +424,81 @@ border="0" />
 
 <script>
 AOS.init({ duration: 1000 });
+</script>
+
+<!-- Cloud Club Willie Chat Widget -->
+<div id="willie-launcher">
+    <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" alt="Willie">
+</div>
+
+<div id="willie-chat-widget">
+    <div class="widget-header">
+        <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" class="header-willie" alt="Willie">
+        <span>Cloud Club Willie</span>
+        <button id="close-widget">x</button>
+    </div>
+
+    <div class="widget-messages" id="widget-messages"></div>
+
+    <div class="widget-input">
+        <input type="text" id="widget-text" placeholder="Ask Willie anything...">
+        <button id="widget-send">➤</button>
+    </div>
+</div>
+
+<script>
+const launcher = document.getElementById("willie-launcher");
+const widget = document.getElementById("willie-chat-widget");
+const closeBtn = document.getElementById("close-widget");
+const sendBtn = document.getElementById("widget-send");
+const input = document.getElementById("widget-text");
+const messages = document.getElementById("widget-messages");
+
+launcher.onclick = () => { widget.style.display = "flex"; };
+closeBtn.onclick = () => { widget.style.display = "none"; };
+
+async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.textContent = "You: " + text;
+    userMsg.style.margin = "10px 0";
+    messages.appendChild(userMsg);
+    messages.scrollTop = messages.scrollHeight;
+
+    input.value = "";
+
+    try {
+        const response = await fetch("https://tc1tdu56jh.execute-api.us-east-1.amazonaws.com/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages: [{ content: text }]
+            })
+        });
+
+        const data = await response.json();
+        const botMsg = document.createElement("div");
+        botMsg.textContent = "Willie: " + (data.reply || "I could not generate a response.");
+        botMsg.style.margin = "10px 0";
+        botMsg.style.color = "#00f0ff";
+        messages.appendChild(botMsg);
+    } catch (error) {
+        const errMsg = document.createElement("div");
+        errMsg.textContent = "Willie: Chat service is unavailable right now.";
+        errMsg.style.margin = "10px 0";
+        errMsg.style.color = "#ff9aa2";
+        messages.appendChild(errMsg);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+sendBtn.onclick = sendMessage;
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+});
 </script>
 
 </body>
