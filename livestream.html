@@ -5,27 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NVC Wildcats | Livestream</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/willie-chat.css" />
+  <style>
+    body.livestream-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.24), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(124, 58, 237, 0.3), transparent 42%),
+        radial-gradient(circle at 50% 90%, rgba(35, 180, 255, 0.2), transparent 40%),
+        #070916;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .livestream-shell {
+      position: relative;
+      z-index: 1;
+      padding: 34px 0 60px;
+    }
+
+    .stream-hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 52px 20px 44px;
+      border-radius: 18px;
+      border: 1px solid rgba(139, 231, 255, 0.4);
+      background:
+        linear-gradient(155deg, rgba(9, 17, 42, 0.88), rgba(32, 20, 62, 0.84)),
+        url("assets/media/spring-2026-cloud-club.png") center / min(560px, 80%) no-repeat;
+      box-shadow: 0 16px 34px rgba(6, 8, 20, 0.5), inset 0 0 36px rgba(124, 58, 237, 0.2);
+    }
+
+    .stream-kicker {
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #8be7ff;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .stream-hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #d7f8ff;
+      text-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
+    }
+
+    .stream-panel {
+      max-width: 1000px;
+      margin: 0 auto;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      border-radius: 18px;
+      padding: 22px;
+      background: linear-gradient(165deg, rgba(10, 16, 36, 0.92), rgba(24, 18, 51, 0.9));
+      box-shadow: 0 20px 42px rgba(5, 10, 24, 0.55), 0 0 35px rgba(124, 58, 237, 0.26);
+    }
+
+    .stream-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      border: 2px solid rgba(139, 231, 255, 0.45);
+      background: rgba(6, 8, 18, 0.85);
+      overflow: hidden;
+    }
+
+    .stream-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .stream-note {
+      margin-top: 14px;
+      color: #b8f6ff;
+      text-align: center;
+    }
+  </style>
 </head>
-<body>
+<body class="livestream-page">
     <header class="site-header">
       <nav class="site-nav container" aria-label="Main Navigation">
         <a class="site-brand" href="index.html">NVC Wildcats</a>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="experience.html">Experience</a></li>
           <li><a href="announcements.html">Announcements</a></li>
           <li><a href="livestream.html" class="active" aria-current="page">Livestream</a></li>
           <li><a href="featured-members.html">Featured Members</a></li>
           <li><a href="guest-speakers.html">Guest Speakers</a></li>
           <li><a href="arcade.html">Arcade</a></li>
           <li><a href="animation.html">Animation</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
         </ul>
       </nav>
     </header>
-  <main class="container">
-    <h1>Livestream</h1>
+  <main class="container livestream-shell">
+    <section class="stream-hero">
+      <p class="stream-kicker">Live Sports Game Stream</p>
+      <h1>Wildcats Courtside Live</h1>
+    </section>
+    <section class="stream-panel" aria-label="Live stream player">
+      <div class="stream-frame">
+        <iframe
+          src="https://www.youtube.com/embed/kYFqG_jcFJE?playsinline=1&rel=0&modestbranding=1"
+          title="NVC Wildcats Livestream"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          loading="eager"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="stream-note">Live game coming soon.</p>
+    </section>
   </main>
+<!-- Cloud Club Willie Chat Widget -->
+<div id="willie-launcher">
+  <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" alt="Willie">
+</div>
+
+<div id="willie-chat-widget">
+  <div class="widget-header">
+    <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" class="header-willie" alt="Willie">
+    <span>Cloud Club Willie</span>
+    <button id="close-widget">x</button>
+  </div>
+
+  <div class="widget-messages" id="widget-messages"></div>
+
+  <div class="widget-input">
+    <input type="text" id="widget-text" placeholder="Ask Willie anything...">
+    <button id="widget-send">➤</button>
+  </div>
+</div>
+
+<script src="js/willie-chat.js"></script>
 </body>
 </html>

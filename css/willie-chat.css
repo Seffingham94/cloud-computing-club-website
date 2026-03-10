@@ -1,0 +1,138 @@
+/* Cloud Club Willie Chat Widget */
+#willie-chat-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 500px;
+  background: rgba(19, 26, 43, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 0 25px #7c3aed;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: willieFadeInUp 0.4s ease;
+  z-index: 9999;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #131a2b;
+  border-bottom: 2px solid #7c3aed;
+  font-weight: bold;
+  color: #00f0ff;
+  font-size: 1.1rem;
+}
+
+.widget-header img.header-willie {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 18px #7c3aed;
+  margin-right: 10px;
+  animation: williePulse 2s infinite;
+}
+
+#close-widget {
+  margin-left: auto;
+  margin-top: 0;
+  background: #7c3aed;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+.widget-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  color: #fff;
+}
+
+.widget-input {
+  display: flex;
+  padding: 10px;
+  background: #0b0f1a;
+}
+
+.widget-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #7c3aed;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.widget-input button {
+  margin-left: 10px;
+  margin-top: 0;
+  background: #7c3aed;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#willie-launcher {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  box-shadow: 0 0 20px #7c3aed;
+  cursor: pointer;
+  z-index: 9999;
+  animation: williePulse 2s infinite;
+}
+
+#willie-launcher img {
+  width: 55px;
+  height: 55px;
+}
+
+@keyframes willieFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes williePulse {
+  0% { box-shadow: 0 0 10px #7c3aed; }
+  50% { box-shadow: 0 0 25px #7c3aed; }
+  100% { box-shadow: 0 0 10px #7c3aed; }
+}
+
+@media (max-width: 768px) {
+  #willie-chat-widget {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: 90px;
+    height: 70vh;
+  }
+
+  #willie-launcher {
+    right: 12px;
+    bottom: 12px;
+  }
+}

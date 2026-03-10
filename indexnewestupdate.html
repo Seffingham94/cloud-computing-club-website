@@ -188,6 +188,7 @@ footer {
 }
 
 </style>
+  <link rel="stylesheet" href="css/willie-chat.css" />
 </head>
 
 <body>
@@ -203,7 +204,7 @@ footer {
 <li><a href="#about">About</a></li>
 <li><a href="#projects">Experience Our Club</a></li>
 <li><a href="#announcements">Announcements</a></li>
-<li><a href="#live">Live Stream</a></li>
+<li><a href="livestream.html">Live Stream</a></li>
 <li><a href="#involved">Join & Feedback</a></li>
 </ul>
 </nav>
@@ -221,7 +222,7 @@ footer {
   <div class="cards">
     <div class="card"><h3><i class="fas fa-cloud"></i> Cloud Labs</h3><p>Build and deploy projects on AWS.</p></div>
     <div class="card"><h3><i class="fas fa-robot"></i> AI Projects</h3><p>Create AI experiments to solve real problems.</p></div>
-    <div class="card"><h3><i class="fas fa-basketball-ball"></i> Sports Streaming</h3><p>Live stream Wildcats games.</p></div>
+    <div class="card"><h3><i class="fas fa-basketball-ball"></i> Sports Streaming</h3><p>Live stream Wildcats games.</p><button onclick="location.href='livestream.html'">Watch Live</button></div>
   </div>
 </section>
 
@@ -291,5 +292,26 @@ border="0" />
 AOS.init({ duration: 1000 });
 </script>
 
+<!-- Cloud Club Willie Chat Widget -->
+<div id="willie-launcher">
+  <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" alt="Willie">
+</div>
+
+<div id="willie-chat-widget">
+  <div class="widget-header">
+    <img src="https://nvcwildcats-willie-chat-bubble.s3.us-east-1.amazonaws.com/NVC-Bublble.png" class="header-willie" alt="Willie">
+    <span>Cloud Club Willie</span>
+    <button id="close-widget">x</button>
+  </div>
+
+  <div class="widget-messages" id="widget-messages"></div>
+
+  <div class="widget-input">
+    <input type="text" id="widget-text" placeholder="Ask Willie anything...">
+    <button id="widget-send">➤</button>
+  </div>
+</div>
+
+<script src="js/willie-chat.js"></script>
 </body>
 </html>
